@@ -465,12 +465,15 @@ public class Screen extends JPanel implements KeyListener {
 
 					//Checking Enemy Collision
 					if(!immortal && !start) {
-						if(map.get(p.getPos()) != null && map.get(p.getPos()).isEnemy()) {
-							lives-=1;
-							map.get(p.getPos()).getCurrEnemy().reset();
-							t.addTime(3);
-							p.reset();
-							playSoundY();
+						Tile currentTile = map.get(p.getPos());
+						if(p.getPos() != null && currentTile != null) {
+							if(currentTile.isEnemy()) {
+								lives-=1;
+								map.get(p.getPos()).getCurrEnemy().reset();
+								t.addTime(3);
+								p.reset();
+								playSoundY();
+							}
 						}
 					}
 
